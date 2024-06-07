@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.0.0
+.VERSION 1.1.0
 .GUID 4e0cb66a-8ed8-4287-ae85-08e0bcb96850
 .AUTHOR Julian Pawlowski
 .COMPANYNAME Workoho GmbH
@@ -12,7 +12,7 @@
 .REQUIREDSCRIPTS
 .EXTERNALSCRIPTDEPENDENCIES
 .RELEASENOTES
-    Version 1.0.0 (2024-05-15)
+    Version 1.1.0 (2024-06-07)
     - Initial release.
 #>
 
@@ -62,12 +62,6 @@ if (-Not $PSCommandPath) { Write-Error 'This runbook is used by other runbooks a
 Write-Verbose "---START of $((Get-Item $PSCommandPath).Name), $((Test-ScriptFileInfo $PSCommandPath | Select-Object -Property Version, Guid | & { process{$_.PSObject.Properties | & { process{$_.Name + ': ' + $_.Value} }} }) -join ', ') ---"
 $StartupVariables = (Get-Variable | & { process { $_.Name } })      # Remember existing variables so we can cleanup ours at the end of the script
 
-#region [COMMON] IMPORT MODULES ------------------------------------------------
-./Common_0000__Import-Module.ps1 -Modules @(
-    @{ Name = 'Microsoft.Graph.Groups'; MinimumVersion = '2.0'; MaximumVersion = '2.65535' }
-)
-#endregion ---------------------------------------------------------------------
-
 #region [COMMON] OPEN CONNECTIONS: Microsoft Graph -----------------------------
 ./Common_0001__Connect-MgGraph.ps1 -Scopes @(
     # Read-only permissions
@@ -76,6 +70,12 @@ $StartupVariables = (Get-Variable | & { process { $_.Name } })      # Remember e
     'Group.ReadWrite.All'
 
     # Other permissions
+)
+#endregion ---------------------------------------------------------------------
+
+#region [COMMON] IMPORT MODULES ------------------------------------------------
+./Common_0000__Import-Module.ps1 -Modules @(
+    @{ Name = 'Microsoft.Graph.Groups'; MinimumVersion = '2.0'; MaximumVersion = '2.65535' }
 )
 #endregion ---------------------------------------------------------------------
 

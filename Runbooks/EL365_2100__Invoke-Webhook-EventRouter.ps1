@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.0.0
+.VERSION 1.1.0
 .GUID 1eb0572e-4b59-400a-9ade-bb623cba05be
 .AUTHOR Julian Pawlowski
 .COMPANYNAME Workoho GmbH
@@ -12,8 +12,8 @@
 .REQUIREDSCRIPTS
 .EXTERNALSCRIPTDEPENDENCIES
 .RELEASENOTES
-    Version 1.0.0 (2024-05-15)
-    - Initial release.
+    Version 1.1.0 (2024-06-13)
+    - Add missing userPrincipalName property to user object when not present
 #>
 
 <#
@@ -164,11 +164,15 @@ switch ($data.eventType) {
         if (
             -not $data.user -or
             -not $data.user.id -or
-            -not $data.user.userPrincipalName -or
             -not $data.user.displayName
         ) {
             Throw 'The webhook data object request body does not contain a user object, or the user object is missing required properties.'
         }
+
+        if (-not $data.user.userPrincipalName) {
+            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/users/$($data.user.id)").userPrincipalName
+        }
+
         $params.Object = $data.user
 
         try {
@@ -191,11 +195,15 @@ switch ($data.eventType) {
         if (
             -not $data.user -or
             -not $data.user.id -or
-            -not $data.user.userPrincipalName -or
             -not $data.user.displayName
         ) {
             Throw 'The webhook data object request body does not contain a user object, or the user object is missing required properties.'
         }
+
+        if (-not $data.user.userPrincipalName) {
+            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/users/$($data.user.id)").userPrincipalName
+        }
+
         $params.Object = $data.user
 
         try {

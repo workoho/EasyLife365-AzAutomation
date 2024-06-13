@@ -170,7 +170,7 @@ switch ($data.eventType) {
         }
 
         if (-not $data.user.userPrincipalName) {
-            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/users/$($data.user.id)").userPrincipalName
+            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
         }
 
         $params.Object = $data.user
@@ -201,7 +201,7 @@ switch ($data.eventType) {
         }
 
         if (-not $data.user.userPrincipalName) {
-            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/users/$($data.user.id)").userPrincipalName
+            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
         }
 
         $params.Object = $data.user

@@ -147,7 +147,7 @@ if ($Object.metadataExtension.additionalData) {
                     if ($groupId) {
                         $params = @{
                             Method = 'POST'
-                            Uri = "/users/$($Object.id)/checkMemberGroups"
+                            Uri = "/v1.0/users/$($Object.id)/checkMemberGroups"
                             Body = @{
                                 groupIds = @($groupId)
                             }

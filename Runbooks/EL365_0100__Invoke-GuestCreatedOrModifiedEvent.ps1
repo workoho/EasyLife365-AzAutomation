@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.1.0
+.VERSION 1.1.1
 .GUID 4e0cb66a-8ed8-4287-ae85-08e0bcb96850
 .AUTHOR Julian Pawlowski
 .COMPANYNAME Workoho GmbH
@@ -12,8 +12,8 @@
 .REQUIREDSCRIPTS
 .EXTERNALSCRIPTDEPENDENCIES
 .RELEASENOTES
-    Version 1.1.0 (2024-06-07)
-    - Initial release.
+    Version 1.1.1 (2024-06-13)
+    - Use implicit Uri parameter in Invoke-MgGraphRequest
 #>
 
 <#
@@ -147,7 +147,7 @@ if ($Object.metadataExtension.additionalData) {
                     if ($groupId) {
                         $params = @{
                             Method = 'POST'
-                            Uri = "https://graph.microsoft.com/v1.0/users/$($Object.id)/checkMemberGroups"
+                            Uri = "/users/$($Object.id)/checkMemberGroups"
                             Body = @{
                                 groupIds = @($groupId)
                             }

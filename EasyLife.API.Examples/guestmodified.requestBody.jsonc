@@ -19,7 +19,7 @@
     "userType": "Guest",
     "metadataExtension": { /* In case of multiple extensions applied to the user, this may be an array? */
       "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
-      "additionalData": {  /* Or: May this may be an array? */
+      "additionalData": {  /* Or: May this be an array? */
         "@odata.type": "#microsoft.graph.openTypeExtension",
         "extensionName": "cloud.easyLife.metadata",
         "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",

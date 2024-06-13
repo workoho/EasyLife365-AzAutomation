@@ -1,0 +1,46 @@
+{
+  "eventType": "guestmodified",
+  "user": {
+    "id": "d0ecaf0c-bbda-4aaa-9402-0e79a5317818",
+    "accountEnabled": true,
+    "businessPhones": [],
+    "companyName": "CORP",
+    "country": "DE",
+    "createdDateTime": "2024-06-13T21:00:41+00:00",
+    "displayName": "First Last [CORP]",
+    "employeeOrgData": {},
+    "externalUserState": "PendingAcceptance",
+    "externalUserStateChangeDateTime": "2024-06-13T21:00:41+00:00",
+    "givenName": "First",
+    "jobTitle": "My Title",
+    "mail": "first.last@example.com",
+    "surname": "Last",
+    "userPrincipalName": "first.last_example.com#EXT#@contoso.onmicrosoft.com",
+    "userType": "Guest",
+    "metadataExtension": { /* In case of multiple extensions applied to the user, this may be an array? */
+      "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
+      "additionalData": {  /* Or: May this may be an array? */
+        "@odata.type": "#microsoft.graph.openTypeExtension",
+        "extensionName": "cloud.easyLife.metadata",
+        "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
+        "metadatafield1": true,
+        "metadatafield2": "string value",
+        "id": "cloud.easyLife.metadata"
+      }
+    },
+    "policyExtension": {
+      "pId": "8a0698db-8b6e-4c96-849b-96b61ec451b0",
+      "noEsca": false,
+      "owSta": "compliant",
+      "invSta": "compliant",
+      "invCh": "2024-06-13T23:59:59+00:00"
+    },
+    "easylife365_usermetadata": {
+      "primaryOwner": "f8ece731-2336-4ef5-ae08-c0b6665afa3a",
+      "secondaryOwner": "1d230ea7-b5cd-4933-8282-d8539bf2ff99",
+      "isCompliant": true
+    },
+    "onPremisesExtensionAttributes": {}
+  },
+  "isExpress": false
+}

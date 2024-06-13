@@ -170,7 +170,13 @@ switch ($data.eventType) {
         }
 
         if (-not $data.user.userPrincipalName) {
-            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
+            $userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
+            if (-not $data.user.PSObject.Properties.Name -contains 'userPrincipalName') {
+                $data.user | Add-Member -NotePropertyName 'userPrincipalName' -NotePropertyValue $userPrincipalName
+            }
+            else {
+                $data.user.userPrincipalName = $userPrincipalName
+            }
         }
 
         $params.Object = $data.user
@@ -201,7 +207,13 @@ switch ($data.eventType) {
         }
 
         if (-not $data.user.userPrincipalName) {
-            $data.user.userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
+            $userPrincipalName = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
+            if (-not $data.user.PSObject.Properties.Name -contains 'userPrincipalName') {
+                $data.user | Add-Member -NotePropertyName 'userPrincipalName' -NotePropertyValue $userPrincipalName
+            }
+            else {
+                $data.user.userPrincipalName = $userPrincipalName
+            }
         }
 
         $params.Object = $data.user

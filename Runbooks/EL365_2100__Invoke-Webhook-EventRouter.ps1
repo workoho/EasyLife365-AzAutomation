@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.1.0
+.VERSION 1.2.0
 .GUID 1eb0572e-4b59-400a-9ade-bb623cba05be
 .AUTHOR Julian Pawlowski
 .COMPANYNAME Workoho GmbH
@@ -12,8 +12,8 @@
 .REQUIREDSCRIPTS
 .EXTERNALSCRIPTDEPENDENCIES
 .RELEASENOTES
-    Version 1.1.0 (2024-06-13)
-    - Add missing userPrincipalName property to user object when not present
+    Version 1.2.0 (2024-06-18)
+    - Add missing userType property to user object when not present
 #>
 
 <#
@@ -172,6 +172,9 @@ switch ($data.eventType) {
         if (-not $data.user.userPrincipalName) {
             $data.user | Add-Member -NotePropertyName 'userPrincipalName' -Force -NotePropertyValue (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
         }
+        if (-not $data.user.userType) {
+            $data.user | Add-Member -NotePropertyName 'userType' -Force -NotePropertyValue 'Guest'
+        }
 
         $params.Object = $data.user
 
@@ -202,6 +205,9 @@ switch ($data.eventType) {
 
         if (-not $data.user.userPrincipalName) {
             $data.user | Add-Member -NotePropertyName 'userPrincipalName' -Force -NotePropertyValue (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/users/$($data.user.id)").userPrincipalName
+        }
+        if (-not $data.user.userType) {
+            $data.user | Add-Member -NotePropertyName 'userType' -Force -NotePropertyValue 'Guest'
         }
 
         $params.Object = $data.user

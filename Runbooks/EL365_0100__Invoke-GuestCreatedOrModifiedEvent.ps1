@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 1.1.1
+.VERSION 1.2.0
 .GUID 4e0cb66a-8ed8-4287-ae85-08e0bcb96850
 .AUTHOR Julian Pawlowski
 .COMPANYNAME Workoho GmbH
@@ -12,8 +12,8 @@
 .REQUIREDSCRIPTS
 .EXTERNALSCRIPTDEPENDENCIES
 .RELEASENOTES
-    Version 1.1.1 (2024-06-13)
-    - Use implicit Uri parameter in Invoke-MgGraphRequest
+    Version 1.2.0 (2024-06-18)
+    - Fix EL365 event format
 #>
 
 <#
@@ -103,7 +103,7 @@ if ($null -ne $GuestGroupsJson) {
 
 #region Process EasyLife 365 Event ---------------------------------------------
 if ($Object.metadataExtension.additionalData) {
-    $Object.metadataExtension.additionalData | Where-Object { $_.id -eq 'cloud.easyLife.metadata' } | & {
+    $Object.metadataExtension.additionalData | & {
         process {
             $obj = $_
             Write-Verbose "Processing data from templateId $($obj.tId)"
@@ -113,7 +113,7 @@ if ($Object.metadataExtension.additionalData) {
                     if ($_.Name -in @('@odata.type', 'id', 'extensionName', 'tId')) { return }
                     Write-Verbose "Processing property $($_.Name)"
 
-                    #region Process group membership based on metadata -----------------------------
+                    #region Process group membership based on metadata ---------
                     $groupId = $null
 
                     if ($_.Name -match '^(?:el-)?grp-([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})$') {
@@ -179,7 +179,7 @@ if ($Object.metadataExtension.additionalData) {
                             Write-Output "User $($Object.userPrincipalName) has been removed from group $groupId."
                         }
                     }
-                    #endregion ---------------------------------------------------------------------
+                    #endregion -------------------------------------------------
                 }
             }
         }

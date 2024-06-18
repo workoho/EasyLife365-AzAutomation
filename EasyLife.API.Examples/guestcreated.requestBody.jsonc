@@ -1,5 +1,5 @@
 {
-  "eventType": "guestmodified", /* should actually be guestcreated and needs to be fixed in the API */
+  "eventType": "guestcreated",
   "user": {
     "id": "d0ecaf0c-bbda-4aaa-9402-0e79a5317818",
     "accountEnabled": true,
@@ -13,19 +13,19 @@
     "externalUserStateChangeDateTime": "2024-06-13T21:00:59.6289466+00:00",
     "givenName": "First",
     "jobTitle": "My Title",
-    /* Missing: mail */
+    /* Not available: mail */
     "surname": "Last",
-    /* Missing: userPrincipalName */
-    /* Missing: userType=Guest */
-    "metadataExtension": { /* In case of multiple extensions applied to the user, this may be an array? */
-      "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
-      "additionalData": {  /* Or: May this be an array? */
-        /* Missing: @odata.type=#microsoft.graph.openTypeExtension (not important) */
-        /* Missing: extensionName=cloud.easyLife.metadata */
+    /* Not available: userPrincipalName */
+    /* Not available: userType=Guest */
+    "metadataExtension": {
+      "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",   /* Should be ignored */
+      "additionalData": {
+        /* Not available: @odata.type=#microsoft.graph.openTypeExtension */
+        /* Not available: extensionName=cloud.easyLife.metadata */
         "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
         "metadatafield1": true,
         "metadatafield2": "string value"
-        /* Missing: id=cloud.easyLife.metadata */
+        /* Not available: id=cloud.easyLife.metadata */
       }
     },
     "policyExtension": {
@@ -40,7 +40,7 @@
       "secondaryOwner": "1d230ea7-b5cd-4933-8282-d8539bf2ff99",
       "isCompliant": true
     }
-    /* Missing: onPremisesExtensionAttributes */
+    /* Not available: onPremisesExtensionAttributes */
   },
   "isExpress": false
 }

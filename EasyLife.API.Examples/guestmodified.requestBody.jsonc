@@ -17,15 +17,15 @@
     "surname": "Last",
     "userPrincipalName": "first.last_example.com#EXT#@contoso.onmicrosoft.com",
     "userType": "Guest",
-    "metadataExtension": { /* In case of multiple extensions applied to the user, this may be an array? */
-      "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
-      "additionalData": {  /* Or: May this be an array? */
-        "@odata.type": "#microsoft.graph.openTypeExtension",
-        "extensionName": "cloud.easyLife.metadata",
+    "metadataExtension": {
+      "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",          /* Should be ignored */
+      "additionalData": {
+        "@odata.type": "#microsoft.graph.openTypeExtension",  /* Should be ignored */
+        "extensionName": "cloud.easyLife.metadata",           /* Should be ignored */
         "tId": "df139999-f237-4f46-99c6-e2c49a0b2f3d",
         "metadatafield1": true,
         "metadatafield2": "string value",
-        "id": "cloud.easyLife.metadata"
+        "id": "cloud.easyLife.metadata"                       /* Should be ignored */
       }
     },
     "policyExtension": {
